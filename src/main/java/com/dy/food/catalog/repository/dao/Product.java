@@ -48,17 +48,13 @@ public class Product extends DateAudit {
     @Column(name = "PRODUCT_IMAGE_ID")
     private String imageId;
 
-    @ManyToOne
-    @JoinColumn(name = "PRODUCT_CATEGORY_ID")
-    private ProductCategory productCategory;
+   
+    private String productCategoryId;
 
     @Column(name = "AVAILABLE_ITEM_COUNT")
     private int availableItemCount;
 
-    public String getProductCategory() {
-        return productCategory.getProductCategoryName();
-    }
-
+   
     public static ProductResponse fromEntity(Product product) {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

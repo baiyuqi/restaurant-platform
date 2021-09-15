@@ -58,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
                 .description(createProductRequest.getDescription())
                 .availableItemCount(createProductRequest.getAvailableItemCount())
                 .price(createProductRequest.getPrice())
-                .productCategory(productCategory)
+                .productCategoryId(productCategory.getProductCategoryId())
                 .imageId(createProductRequest.getImageId())
                 .build();
 
@@ -130,7 +130,7 @@ public class ProductServiceImpl implements ProductService {
 
             //check weather product category exists
             ProductCategory productCategory = productCategoryOptional.orElseThrow(() -> new RuntimeException("ProductCategory doesn't exist!"));
-            productExisting.setProductCategory(productCategory);
+            productExisting.setProductCategoryId(productCategory.getProductCategoryId());
         }
 
         if (updateProductRequest.getAvailableItemCount() != null) {
