@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @author: Yuqi.Bai, Date : 2019-05-16
  */
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.dy.restaurant"})
+@ComponentScan(basePackages = {"com.dy.food"})
 
 public class RestaurantApplication {
 
