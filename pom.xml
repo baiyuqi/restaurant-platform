@@ -11,10 +11,10 @@
 		<relativePath />
 	</parent>
 	<groupId>com.dy</groupId>
-	<artifactId>restaurant</artifactId>
+	<artifactId>food</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>restaurant</name>
-	<description>restaurant</description>
+	<name>food</name>
+	<description>food</description>
 
 	<properties>
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
