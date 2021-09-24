@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.dy.food.account.model.User;
 import com.dy.food.account.repository.UserRepository;
-import com.dy.food.account.repository.dao.User;
 import com.dy.food.account.service.AppUserDetailsService;
 
 /**

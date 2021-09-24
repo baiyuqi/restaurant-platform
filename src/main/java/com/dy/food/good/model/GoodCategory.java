@@ -1,4 +1,4 @@
-package com.dy.food.good.repository.dao;
+package com.dy.food.good.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,10 +35,10 @@ public class GoodCategory extends DateAudit {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "PRODUCT_CATEGORY_ID", updatable = false, nullable = false)
-    private String goodCategoryId;
+    private String id;
 
     @Column(name = "PRODUCT_CATEGORY_NAME", nullable = false)
-    private String goodCategoryName;
+    private String name;
 
   
     private String description;

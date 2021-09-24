@@ -1,4 +1,4 @@
-package com.dy.food.account.repository.dao;
+package com.dy.food.account.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

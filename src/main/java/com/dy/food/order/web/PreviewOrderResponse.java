@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dy.food.billing.web.GetAddressResponse;
-import com.dy.food.order.repository.dao.OrderItem;
+import com.dy.food.order.model.OrderItem;
 
 /**
  * @author Yuqi.Bai, Date : 06-Dec-2020

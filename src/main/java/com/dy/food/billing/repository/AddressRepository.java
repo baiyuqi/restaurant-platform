@@ -2,7 +2,7 @@ package com.dy.food.billing.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.dy.food.billing.repository.dao.AddressDao;
+import com.dy.food.billing.model.AddressDao;
 
 import java.util.List;
 import java.util.Optional;

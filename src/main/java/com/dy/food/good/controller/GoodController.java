@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.dy.food.good.repository.dao.Good;
+import com.dy.food.good.model.Good;
 import com.dy.food.good.service.GoodService;
 import com.dy.food.good.web.CreateGoodRequest;
 import com.dy.food.good.web.GoodResponse;
@@ -123,7 +123,7 @@ public class GoodController {
 
     @GetMapping(value = "/goodsByRestaurant", produces = "application/json")
     public ResponseEntity<?> getAllGoodsByRestaurant(String restaurantId) {
-    	List<Good> rst = goodService.getAllGoodsByRestaurant(restaurantId);
+    	List<Good> rst = goodService.getByRestaurant(restaurantId);
         return ResponseEntity.ok(rst);
 
     }

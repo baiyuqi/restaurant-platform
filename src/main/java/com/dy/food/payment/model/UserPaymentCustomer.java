@@ -1,4 +1,4 @@
-package com.dy.food.payment.repository.dao;
+package com.dy.food.payment.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

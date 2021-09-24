@@ -2,7 +2,7 @@ package com.dy.food.order.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.dy.food.order.repository.dao.Order;
+import com.dy.food.order.model.Order;
 
 import java.util.List;
 

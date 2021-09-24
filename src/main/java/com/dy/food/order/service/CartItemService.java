@@ -1,6 +1,6 @@
 package com.dy.food.order.service;
 
-import com.dy.food.order.repository.dao.CartItem;
+import com.dy.food.order.model.CartItem;
 import com.dy.food.order.web.CartItemRequest;
 
 /**

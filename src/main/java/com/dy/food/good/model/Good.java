@@ -1,4 +1,4 @@
-package com.dy.food.good.repository.dao;
+package com.dy.food.good.model;
 
 import com.dy.food.commons.util.DateAudit;
 import com.dy.food.good.web.GoodResponse;
@@ -36,10 +36,10 @@ public class Good extends DateAudit {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "PRODUCT_ID", updatable = false, nullable = false)
-    private String goodId;
+    private String id;
 
     @Column(name = "PRODUCT_NAME", nullable = false)
-    private String goodName;
+    private String name;
 
     @Column(name = "PRODUCT_DESCRIPTION")
     private String description;
@@ -49,7 +49,7 @@ public class Good extends DateAudit {
     private String imageId;
 
     @Column(name = "PRODUCT_CATEGORY_ID")
-    private String goodCategoryId;
+    private String categoryId;
 
     @Column(name = "AVAILABLE_ITEM_COUNT")
     private int availableItemCount;

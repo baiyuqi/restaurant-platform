@@ -3,7 +3,7 @@ package com.dy.food.good.web;
 import lombok.Data;
 import org.springframework.data.domain.Page;
 
-import com.dy.food.good.repository.dao.GoodCategory;
+import com.dy.food.good.model.GoodCategory;
 
 import java.util.HashMap;
 import java.util.Map;

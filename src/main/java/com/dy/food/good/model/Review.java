@@ -1,4 +1,4 @@
-package com.dy.food.good.repository.dao;
+package com.dy.food.good.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

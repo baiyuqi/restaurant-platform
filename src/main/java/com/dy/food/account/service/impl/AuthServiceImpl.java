@@ -7,11 +7,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.dy.food.account.model.OAuthClient;
+import com.dy.food.account.model.Role;
 import com.dy.food.account.repository.OAuthClientRepository;
 import com.dy.food.account.repository.RoleRepository;
 import com.dy.food.account.repository.UserRepository;
-import com.dy.food.account.repository.dao.OAuthClient;
-import com.dy.food.account.repository.dao.Role;
 import com.dy.food.account.service.AuthService;
 import com.dy.food.account.web.CreateOAuthClientRequest;
 import com.dy.food.account.web.CreateOAuthClientResponse;
@@ -96,8 +96,8 @@ public class AuthServiceImpl implements AuthService {
     }
 
     // Creating user's account
-    com.dy.food.account.repository.dao.User user =
-        new com.dy.food.account.repository.dao.User(
+    com.dy.food.account.model.User user =
+        new com.dy.food.account.model.User(
             signUpRequest.getUserName(),
             signUpRequest.getPassword(),
             signUpRequest.getFirstName(),
@@ -111,7 +111,7 @@ public class AuthServiceImpl implements AuthService {
 
     user.setRoles(Collections.singleton(userRole));
 
-    com.dy.food.account.repository.dao.User savedUser =
+    com.dy.food.account.model.User savedUser =
         userRepository.save(user);
 
     return CreateUserResponse.builder()

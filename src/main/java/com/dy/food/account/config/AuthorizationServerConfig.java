@@ -109,7 +109,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
       public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
 
         User principal = (User) authentication.getUserAuthentication().getPrincipal();
-          Optional<com.dy.food.account.repository.dao.User> userDetail
+          Optional<com.dy.food.account.model.User> userDetail
                   = userRepository.findByUserName(principal.getUsername());
           final Map<String, Object> additionalInfo = new HashMap<>();
         userDetail.ifPresent(user -> additionalInfo.put("user_id", user.getUserId()));

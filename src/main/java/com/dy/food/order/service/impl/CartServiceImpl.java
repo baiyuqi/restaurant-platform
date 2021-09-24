@@ -5,9 +5,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.dy.food.order.model.Cart;
+import com.dy.food.order.model.CartItem;
 import com.dy.food.order.repository.CartRepository;
-import com.dy.food.order.repository.dao.Cart;
-import com.dy.food.order.repository.dao.CartItem;
 import com.dy.food.order.service.CartService;
 
 import java.util.ArrayList;

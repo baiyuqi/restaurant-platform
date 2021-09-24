@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.dy.food.good.repository.dao.GoodCategory;
+import com.dy.food.good.model.GoodCategory;
 import com.dy.food.good.service.GoodCategoryService;
 import com.dy.food.good.web.CreateGoodCategoryRequest;
 import com.dy.food.good.web.GoodCategoriesPagedResponse;
@@ -41,7 +41,7 @@ public class GoodCategoryController {
     @PreAuthorize("hasAuthority('ADMIN_USER')")
     public ResponseEntity<?> createGoodCategory(@RequestBody @Valid CreateGoodCategoryRequest createGoodCategoryRequest) {
 
-        String productCategory = goodCategoryService.createGoodCategory(createGoodCategoryRequest);
+        String productCategory = goodCategoryService.create(createGoodCategoryRequest);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{productCategoryId}")
@@ -53,7 +53,7 @@ public class GoodCategoryController {
     @GetMapping("/productCategory/{productCategoryId}")
     public ResponseEntity<GoodCategory> getGoodCategory(@PathVariable("productCategoryId") String productCategoryId) {
 
-        GoodCategory goodCategory = goodCategoryService.getGoodCategory(productCategoryId);
+        GoodCategory goodCategory = goodCategoryService.get(productCategoryId);
 
         return ResponseEntity.ok(goodCategory);
     }
@@ -62,7 +62,7 @@ public class GoodCategoryController {
     @PreAuthorize("hasAuthority('ADMIN_USER')")
     public ResponseEntity<?> deleteGoodCategory(@PathVariable("productCategoryId") String productCategoryId) {
 
-        goodCategoryService.deleteGoodCategory(productCategoryId);
+        goodCategoryService.delete(productCategoryId);
 
         return ResponseEntity.noContent().build();
     }
@@ -71,7 +71,7 @@ public class GoodCategoryController {
     @PreAuthorize("hasAuthority('ADMIN_USER')")
     public ResponseEntity<?> updateGoodCategory(@RequestBody @Valid UpdateGoodCategoryRequest updateGoodCategoryRequest) {
 
-        goodCategoryService.updateGoodCategory(updateGoodCategoryRequest);
+        goodCategoryService.update(updateGoodCategoryRequest);
 
         return ResponseEntity.noContent().build();
     }
@@ -82,7 +82,7 @@ public class GoodCategoryController {
                                                      @RequestParam(value = "size", required = false) Integer size,
                                                      PagedResourcesAssembler<GoodCategory> assembler) {
     
-        Page<GoodCategory> list = goodCategoryService.getAllGoodCategories(sort, page, size);
+        Page<GoodCategory> list = goodCategoryService.getAll(sort, page, size);
     
         Link link = new Link(ServletUriComponentsBuilder.fromCurrentRequest()
                                                         .build()

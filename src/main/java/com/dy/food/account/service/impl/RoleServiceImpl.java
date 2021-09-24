@@ -4,8 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dy.food.account.model.Role;
 import com.dy.food.account.repository.RoleRepository;
-import com.dy.food.account.repository.dao.Role;
 import com.dy.food.account.service.RoleService;
 import com.dy.food.account.web.CreateRoleRequest;
 

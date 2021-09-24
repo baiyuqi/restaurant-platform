@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.dy.food.account.repository.dao.Role;
+import com.dy.food.account.model.Role;
 import com.dy.food.account.service.RoleService;
 import com.dy.food.account.web.CreateRoleRequest;
 

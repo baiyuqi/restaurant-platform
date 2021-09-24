@@ -1,4 +1,4 @@
-package com.dy.food.account.repository.dao;
+package com.dy.food.consumer.model;
 
 import java.util.Set;
 

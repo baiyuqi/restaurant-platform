@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dy.food.account.exception.SuccessCodeWithErrorResponse;
+import com.dy.food.account.model.Role;
+import com.dy.food.account.model.User;
 import com.dy.food.account.repository.RoleRepository;
 import com.dy.food.account.repository.UserRepository;
-import com.dy.food.account.repository.dao.Role;
-import com.dy.food.account.repository.dao.User;
 import com.dy.food.account.service.UserRoleService;
 import com.dy.food.account.web.MapRoleToUsersRequest;
 import com.dy.food.account.web.MapUserToRolesRequest;

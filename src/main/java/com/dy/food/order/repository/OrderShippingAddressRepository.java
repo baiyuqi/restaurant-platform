@@ -2,7 +2,7 @@ package com.dy.food.order.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.dy.food.order.repository.dao.OrderShippingAddress;
+import com.dy.food.order.model.OrderShippingAddress;
 
 /**
  * @author Yuqi.Bai, Date : 07-Dec-2020

@@ -1,4 +1,4 @@
-package com.dy.food.order.repository.dao;
+package com.dy.food.order.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -2,7 +2,7 @@ package com.dy.food.account.service;
 
 import java.util.List;
 
-import com.dy.food.account.repository.dao.Role;
+import com.dy.food.account.model.Role;
 import com.dy.food.account.web.CreateRoleRequest;
 
 /**

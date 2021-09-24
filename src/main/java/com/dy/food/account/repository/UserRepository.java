@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
-import com.dy.food.account.repository.dao.User;
+import com.dy.food.account.model.User;
 
 import javax.transaction.Transactional;
 

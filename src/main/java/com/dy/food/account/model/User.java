@@ -1,4 +1,4 @@
-package com.dy.food.restaurant.repository.dao;
+package com.dy.food.account.model;
 
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -30,10 +30,16 @@ import com.dy.food.commons.util.DateAudit;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "RESTAURANT")
+@Table(name = "USER")
 @Builder
-public class Restaurant extends DateAudit {
+public class User extends DateAudit {
 
+  @ManyToMany(fetch = FetchType.EAGER,
+      cascade = CascadeType.DETACH)
+  @JoinTable(name = "USER_ROLES",
+      joinColumns = {@JoinColumn(name = "user_id")},
+      inverseJoinColumns = {@JoinColumn(name = "role_id")})
+  Set<Role> roles;
 
   @Id
   @GeneratedValue(generator = "uuid")
@@ -56,5 +62,11 @@ public class Restaurant extends DateAudit {
   @Column(name = "EMAIL", nullable = false)
   private String email;
 
- 
+  public User(String userName, String password, String firstName, String lastName, String email) {
+    this.userName = userName;
+    this.password = password;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+  }
 }

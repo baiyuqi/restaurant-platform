@@ -5,8 +5,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.dy.food.billing.model.AddressDao;
 import com.dy.food.billing.repository.AddressRepository;
-import com.dy.food.billing.repository.dao.AddressDao;
 import com.dy.food.billing.service.AddressService;
 import com.dy.food.billing.web.CreateAddressRequest;
 import com.dy.food.billing.web.GetAddressResponse;

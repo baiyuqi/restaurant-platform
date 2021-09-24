@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.dy.food.order.repository.dao.OrderBillingAddress;
-import com.dy.food.order.repository.dao.OrderItem;
-import com.dy.food.order.repository.dao.OrderShippingAddress;
+import com.dy.food.order.model.OrderBillingAddress;
+import com.dy.food.order.model.OrderItem;
+import com.dy.food.order.model.OrderShippingAddress;
 
 /**
  * @author: Yuqi.Bai,

@@ -1,8 +1,8 @@
 package com.dy.food.payment.service.impl;
 
 import com.dy.food.commons.exception.RunTimeExceptionPlaceHolder;
+import com.dy.food.payment.model.UserPaymentCustomer;
 import com.dy.food.payment.repository.UserPaymentCustomerRepository;
-import com.dy.food.payment.repository.dao.UserPaymentCustomer;
 import com.dy.food.payment.service.PaymentMethodService;
 import com.dy.food.payment.web.CreatePaymentMethodRequest;
 import com.dy.food.payment.web.GetPaymentMethodResponse;

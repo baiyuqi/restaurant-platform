@@ -1,6 +1,6 @@
 package com.dy.food.order.service;
 
-import com.dy.food.order.repository.dao.Cart;
+import com.dy.food.order.model.Cart;
 
 /**
  * @author: Yuqi.Bai,

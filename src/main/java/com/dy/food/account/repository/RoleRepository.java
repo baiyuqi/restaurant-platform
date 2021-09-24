@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
-import com.dy.food.account.repository.dao.Role;
+import com.dy.food.account.model.Role;
 
 /**
  * @author: Yuqi.Bai, Date : 2019-05-17

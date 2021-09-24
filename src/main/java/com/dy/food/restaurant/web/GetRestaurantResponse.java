@@ -2,7 +2,7 @@ package com.dy.food.restaurant.web;
 
 import java.util.Set;
 
-import com.dy.food.account.repository.dao.Role;
+import com.dy.food.account.model.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

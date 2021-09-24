@@ -1,11 +1,11 @@
-package com.dy.food.good.model;
+package com.dy.food.good.hateoas;
 
 import lombok.Data;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 
-import com.dy.food.good.repository.dao.Good;
+import com.dy.food.good.model.Good;
 
 
 /**

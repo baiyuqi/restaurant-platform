@@ -3,7 +3,7 @@ package com.dy.food.order.repository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.CrudRepository;
 
-import com.dy.food.order.repository.dao.CartItem;
+import com.dy.food.order.model.CartItem;
 
 import javax.transaction.Transactional;
 import java.util.Optional;

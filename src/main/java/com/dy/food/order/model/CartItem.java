@@ -1,4 +1,4 @@
-package com.dy.food.order.repository.dao;
+package com.dy.food.order.model;
 
 import com.dy.food.commons.util.DateAudit;
 import com.fasterxml.jackson.annotation.JsonIgnore;

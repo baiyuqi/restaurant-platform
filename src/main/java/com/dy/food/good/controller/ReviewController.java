@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dy.food.good.repository.dao.Review;
+import com.dy.food.good.model.Review;
 import com.dy.food.good.service.ReviewService;
 import com.dy.food.good.web.CreateOrUpdateReviewRequest;
 
