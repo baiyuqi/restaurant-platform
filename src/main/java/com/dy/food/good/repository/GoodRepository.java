@@ -13,5 +13,5 @@ import com.dy.food.good.repository.dao.Good;
  */
 @Repository
 public interface GoodRepository extends JpaRepository<Good, String> {
-	public List<Good> findByProductCategoryId(String pcid);
+	public List<Good> findByGoodCategoryId(String pcid);
 }
