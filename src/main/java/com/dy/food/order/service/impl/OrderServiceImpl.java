@@ -121,7 +121,7 @@ public class OrderServiceImpl implements OrderService {
                     orderItem.setOrder(order);
                     orderItem.setOrderItemPrice(cartItem.getItemPrice());
                     orderItem.setOrderExtendedPrice(cartItem.getExtendedPrice());
-                    orderItem.setProductId(cartItem.getProductId());
+                    orderItem.setGoodId(cartItem.getGoodId());
                     orderItem.setOrderItemPrice(cartItem.getItemPrice());
                     orderItem.setQuantity(cartItem.getQuantity());
                     order.getOrderItems().add(orderItem);
@@ -239,7 +239,7 @@ public class OrderServiceImpl implements OrderService {
                     OrderItem orderItem = new OrderItem();
                     orderItem.setOrderItemPrice(cartItem.getItemPrice());
                     orderItem.setOrderExtendedPrice(cartItem.getExtendedPrice());
-                    orderItem.setProductId(cartItem.getProductId());
+                    orderItem.setGoodId(cartItem.getGoodId());
                     orderItem.setOrderItemPrice(cartItem.getItemPrice());
                     orderItem.setQuantity(cartItem.getQuantity());
                     previewOrderResponse.getOrderItems().add(orderItem);

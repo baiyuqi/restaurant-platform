@@ -39,7 +39,7 @@ public class OrderItem extends DateAudit {
     private Order order;
     
     @Column(name = "PRODUCT_ID", nullable = false)
-    private String productId;
+    private String goodId;
 
     @Column(name = "QUANTITY", nullable = false)
     private int quantity;

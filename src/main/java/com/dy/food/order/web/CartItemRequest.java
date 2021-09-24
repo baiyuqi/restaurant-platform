@@ -19,9 +19,9 @@ import javax.validation.constraints.NotNull;
 @Builder
 public class CartItemRequest {
     
-    @NotNull(message = "productId should not be null!")
-    @NotEmpty(message = "productId should not be empty!")
-    private String productId;
+    @NotNull(message = "goodId should not be null!")
+    @NotEmpty(message = "goodId should not be empty!")
+    private String goodId;
 
     @Min(message = "quantity should be greater than 0", value = 1)
     private Integer quantity;

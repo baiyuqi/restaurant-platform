@@ -46,10 +46,10 @@ public class CartItem extends DateAudit {
     private double extendedPrice;
     
     @Column(name = "PRODUCT_ID", nullable = false)
-    private String productId;
+    private String goodId;
 
     @Column(name = "PRODUCT_NAME", nullable = false)
-    private String productName;
+    private String goodName;
     
     @ManyToOne
     @JoinColumn(name = "CART_ID")
@@ -68,7 +68,7 @@ public class CartItem extends DateAudit {
                        "cartItemId='" + cartItemId + '\'' +
                        ", quantity=" + quantity +
                        ", itemPrice=" + itemPrice +
-                       ", productId='" + productId + '\'' +
+                       ", goodId='" + goodId + '\'' +
                        '}';
     }
 }

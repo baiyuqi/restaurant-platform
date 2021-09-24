@@ -54,21 +54,21 @@ public class CartItemServiceImpl implements CartItemService {
             }
         }
     
-        GoodResponse getProductResponse = catalogFeignClient.getProduct(cartItemRequest.getProductId());
+        GoodResponse getGoodResponse = catalogFeignClient.getGood(cartItemRequest.getGoodId());
 
-        if (cartItemRequest.getQuantity() > getProductResponse.getAvailableItemCount()) {
+        if (cartItemRequest.getQuantity() > getGoodResponse.getAvailableItemCount()) {
             throw new RuntimeException("Quantity is greater than available item count!");
         }
 
-        //If the product already exists in the cart, update its quantity and itemPrice.
+        //If the good already exists in the cart, update its quantity and itemPrice.
 
         if (cartByUserName.getCartItems() != null) {
             for (CartItem ci : cartByUserName.getCartItems()) {
     
-                if (getProductResponse.getProductId().equals(ci.getProductId())) {
+                if (getGoodResponse.getGoodId().equals(ci.getGoodId())) {
                     ci.setQuantity(cartItemRequest.getQuantity());
-                    ci.setItemPrice(getProductResponse.getPrice());
-                    ci.setExtendedPrice(ci.getQuantity() * getProductResponse.getPrice());
+                    ci.setItemPrice(getGoodResponse.getPrice());
+                    ci.setExtendedPrice(ci.getQuantity() * getGoodResponse.getPrice());
                     cartItemRepository.save(ci);
                     return;
                 }
@@ -78,11 +78,11 @@ public class CartItemServiceImpl implements CartItemService {
         //If cart doesn't have any cartItems, then create cartItems.
         CartItem cartItem = CartItem.builder()
                                     .cart(cartByUserName)
-                                    .itemPrice(getProductResponse.getPrice())
-                                    .extendedPrice(cartItemRequest.getQuantity() * getProductResponse.getPrice())
+                                    .itemPrice(getGoodResponse.getPrice())
+                                    .extendedPrice(cartItemRequest.getQuantity() * getGoodResponse.getPrice())
                                     .quantity(cartItemRequest.getQuantity())
-                                    .productId(getProductResponse.getProductId())
-                                    .productName(getProductResponse.getProductName())
+                                    .goodId(getGoodResponse.getGoodId())
+                                    .goodName(getGoodResponse.getGoodName())
                                     .build();
 
         cartItemRepository.save(cartItem);
