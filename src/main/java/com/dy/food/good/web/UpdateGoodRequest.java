@@ -1,4 +1,4 @@
-package com.dy.food.catalog.web;
+package com.dy.food.good.web;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,13 +15,13 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateProductRequest {
+public class UpdateGoodRequest {
 
-    @NotNull(message = "productId should not be null!")
-    @NotEmpty(message = "productId should not be empty!")
-    private String productId;
+    @NotNull(message = "goodId should not be null!")
+    @NotEmpty(message = "goodId should not be empty!")
+    private String goodId;
 
-    private String productName;
+    private String goodName;
 
     private String description;
 
@@ -30,7 +30,7 @@ public class UpdateProductRequest {
 
     private String imageId;
 
-    private String productCategoryId;
+    private String goodCategoryId;
 
     private Integer availableItemCount;
 

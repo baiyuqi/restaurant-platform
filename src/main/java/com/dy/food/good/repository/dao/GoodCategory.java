@@ -1,4 +1,4 @@
-package com.dy.food.catalog.repository.dao;
+package com.dy.food.good.repository.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,16 +29,16 @@ import java.util.List;
 @Entity
 @Table(name = "PRODUCT_CATEGORY")
 @Builder
-public class ProductCategory extends DateAudit {
+public class GoodCategory extends DateAudit {
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "PRODUCT_CATEGORY_ID", updatable = false, nullable = false)
-    private String productCategoryId;
+    private String goodCategoryId;
 
     @Column(name = "PRODUCT_CATEGORY_NAME", nullable = false)
-    private String productCategoryName;
+    private String goodCategoryName;
 
   
     private String description;

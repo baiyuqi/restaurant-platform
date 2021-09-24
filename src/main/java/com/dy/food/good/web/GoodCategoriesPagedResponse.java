@@ -1,9 +1,9 @@
-package com.dy.food.catalog.web;
+package com.dy.food.good.web;
 
 import lombok.Data;
 import org.springframework.data.domain.Page;
 
-import com.dy.food.catalog.repository.dao.ProductCategory;
+import com.dy.food.good.repository.dao.GoodCategory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,9 +13,9 @@ import java.util.Map;
  * Date : 2019-08-29
  */
 @Data
-public class ProductCategoriesPagedResponse {
+public class GoodCategoriesPagedResponse {
     
-    Page<ProductCategory> page;
+    Page<GoodCategory> page;
     Map<String, String> _links = new HashMap<>();
     
 }

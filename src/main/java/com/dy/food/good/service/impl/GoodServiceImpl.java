@@ -1,16 +1,16 @@
-package com.dy.food.catalog.service.impl;
+package com.dy.food.good.service.impl;
 
-import com.dy.food.catalog.repository.ProductCategoryRepository;
-import com.dy.food.catalog.repository.ProductRepository;
-import com.dy.food.catalog.repository.ReviewRepository;
-import com.dy.food.catalog.repository.dao.Product;
-import com.dy.food.catalog.repository.dao.ProductCategory;
-import com.dy.food.catalog.repository.dao.Review;
-import com.dy.food.catalog.service.ProductService;
-import com.dy.food.catalog.service.ReviewService;
-import com.dy.food.catalog.web.CreateProductRequest;
-import com.dy.food.catalog.web.ProductResponse;
-import com.dy.food.catalog.web.UpdateProductRequest;
+import com.dy.food.good.repository.GoodCategoryRepository;
+import com.dy.food.good.repository.GoodRepository;
+import com.dy.food.good.repository.ReviewRepository;
+import com.dy.food.good.repository.dao.Good;
+import com.dy.food.good.repository.dao.GoodCategory;
+import com.dy.food.good.repository.dao.Review;
+import com.dy.food.good.service.GoodService;
+import com.dy.food.good.service.ReviewService;
+import com.dy.food.good.web.CreateGoodRequest;
+import com.dy.food.good.web.GoodResponse;
+import com.dy.food.good.web.UpdateGoodRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,13 +28,13 @@ import java.util.Optional;
  * Date : 2019-06-06
  */
 @Service
-public class ProductServiceImpl implements ProductService {
+public class GoodServiceImpl implements GoodService {
 
     @Autowired
-    ProductRepository productRepository;
+    GoodRepository goodRepository;
 
     @Autowired
-    ProductCategoryRepository productCategoryRepository;
+    GoodCategoryRepository goodCategoryRepository;
 
     @Autowired
     private ReviewService reviewService;
@@ -46,109 +46,109 @@ public class ProductServiceImpl implements ProductService {
     ObjectMapper objectMapper;
 
     @Override
-    public String createProduct(@Valid CreateProductRequest createProductRequest) {
+    public String createGood(@Valid CreateGoodRequest createGoodRequest) {
 
-        Optional<ProductCategory> productCategoryOptional =
-                productCategoryRepository.findById(createProductRequest.getProductCategoryId());
+        Optional<GoodCategory> goodCategoryOptional =
+                goodCategoryRepository.findById(createGoodRequest.getGoodCategoryId());
 
-        ProductCategory productCategory = productCategoryOptional.orElseThrow(() -> new RuntimeException("ProductCategory doesn't exist!"));
+        GoodCategory goodCategory = goodCategoryOptional.orElseThrow(() -> new RuntimeException("GoodCategory doesn't exist!"));
 
-        Product product = Product.builder()
-                .productName(createProductRequest.getProductName())
-                .description(createProductRequest.getDescription())
-                .availableItemCount(createProductRequest.getAvailableItemCount())
-                .price(createProductRequest.getPrice())
-                .productCategoryId(productCategory.getProductCategoryId())
-                .imageId(createProductRequest.getImageId())
+        Good good = Good.builder()
+                .goodName(createGoodRequest.getGoodName())
+                .description(createGoodRequest.getDescription())
+                .availableItemCount(createGoodRequest.getAvailableItemCount())
+                .price(createGoodRequest.getPrice())
+                .goodCategoryId(goodCategory.getGoodCategoryId())
+                .imageId(createGoodRequest.getImageId())
                 .build();
 
 
-        Product savedProduct = productRepository.save(product);
-        return savedProduct.getProductId();
+        Good savedGood = goodRepository.save(good);
+        return savedGood.getGoodId();
     }
 
     @Override
-    public ProductResponse getProduct(String productId) {
-        Optional<Product> productOptional =
-                productRepository.findById(productId);
+    public GoodResponse getGood(String goodId) {
+        Optional<Good> goodOptional =
+                goodRepository.findById(goodId);
 
-        Product product = productOptional.orElseThrow(() -> new RuntimeException("Product Id doesn't exist!"));
-        ProductResponse productResponse = objectMapper.convertValue(product, ProductResponse.class);
-        populateRatingForProduct(productId, productResponse);
-        return productResponse;
+        Good good = goodOptional.orElseThrow(() -> new RuntimeException("Good Id doesn't exist!"));
+        GoodResponse goodResponse = objectMapper.convertValue(good, GoodResponse.class);
+        populateRatingForGood(goodId, goodResponse);
+        return goodResponse;
     }
 
-    //This way of setting rating for productResponse is not okay, But this is okay for now.
-    private void populateRatingForProduct(String productId, ProductResponse productResponse) {
-        List<Review> reviewsForProduct = reviewService.getReviewsForProduct(productId);
-        if (reviewsForProduct.size() > 0) {
-            double sum = reviewsForProduct.stream().mapToDouble(Review::getRatingValue).sum();
-            double rating = sum / reviewsForProduct.size();
-            productResponse.setAverageRating(rating);
+    //This way of setting rating for goodResponse is not okay, But this is okay for now.
+    private void populateRatingForGood(String goodId, GoodResponse goodResponse) {
+        List<Review> reviewsForGood = reviewService.getReviewsForGood(goodId);
+        if (reviewsForGood.size() > 0) {
+            double sum = reviewsForGood.stream().mapToDouble(Review::getRatingValue).sum();
+            double rating = sum / reviewsForGood.size();
+            goodResponse.setAverageRating(rating);
         }
 
-        productResponse.setNoOfRatings(Math.toIntExact(reviewRepository.countAllByProductId(productId)));
-    }
-
-    @Override
-    public void deleteProduct(String productId) {
-
-        productRepository.deleteById(productId);
-
+        goodResponse.setNoOfRatings(Math.toIntExact(reviewRepository.countAllByGoodId(goodId)));
     }
 
     @Override
-    public void updateProduct(UpdateProductRequest updateProductRequest) {
+    public void deleteGood(String goodId) {
 
-        Optional<Product> productOptional =
-                productRepository.findById(updateProductRequest.getProductId());
+        goodRepository.deleteById(goodId);
 
-        //check weather product exists
-        final Product productExisting = productOptional.orElseThrow(() -> new RuntimeException("Product Id doesn't exist!"));
-
-        productExisting.setProductId(updateProductRequest.getProductId());
-
-        if (updateProductRequest.getProductName() != null) {
-            productExisting.setProductName(updateProductRequest.getProductName());
-        }
-
-        if (updateProductRequest.getDescription() != null) {
-            productExisting.setDescription(updateProductRequest.getDescription());
-        }
-
-        if (updateProductRequest.getPrice() != null) {
-            productExisting.setPrice(updateProductRequest.getPrice());
-        }
-
-        if (updateProductRequest.getImageId() != null) {
-            productExisting.setImageId(updateProductRequest.getImageId());
-        }
-
-        if (updateProductRequest.getProductCategoryId() != null) {
-            Optional<ProductCategory> productCategoryOptional =
-                    productCategoryRepository.findById(updateProductRequest.getProductCategoryId());
-
-            //check weather product category exists
-            ProductCategory productCategory = productCategoryOptional.orElseThrow(() -> new RuntimeException("ProductCategory doesn't exist!"));
-            productExisting.setProductCategoryId(productCategory.getProductCategoryId());
-        }
-
-        if (updateProductRequest.getAvailableItemCount() != null) {
-            productExisting.setAvailableItemCount(updateProductRequest.getAvailableItemCount());
-        }
-
-        productExisting.setCreatedAt(productExisting.getCreatedAt());
-
-        productRepository.save(productExisting);
     }
 
     @Override
-    public Page<Product> findAllProducts(Pageable pageable) {
-        return productRepository.findAll(pageable);
+    public void updateGood(UpdateGoodRequest updateGoodRequest) {
+
+        Optional<Good> goodOptional =
+                goodRepository.findById(updateGoodRequest.getGoodId());
+
+        //check weather good exists
+        final Good goodExisting = goodOptional.orElseThrow(() -> new RuntimeException("Good Id doesn't exist!"));
+
+        goodExisting.setGoodId(updateGoodRequest.getGoodId());
+
+        if (updateGoodRequest.getGoodName() != null) {
+            goodExisting.setGoodName(updateGoodRequest.getGoodName());
+        }
+
+        if (updateGoodRequest.getDescription() != null) {
+            goodExisting.setDescription(updateGoodRequest.getDescription());
+        }
+
+        if (updateGoodRequest.getPrice() != null) {
+            goodExisting.setPrice(updateGoodRequest.getPrice());
+        }
+
+        if (updateGoodRequest.getImageId() != null) {
+            goodExisting.setImageId(updateGoodRequest.getImageId());
+        }
+
+        if (updateGoodRequest.getGoodCategoryId() != null) {
+            Optional<GoodCategory> goodCategoryOptional =
+                    goodCategoryRepository.findById(updateGoodRequest.getGoodCategoryId());
+
+            //check weather good category exists
+            GoodCategory goodCategory = goodCategoryOptional.orElseThrow(() -> new RuntimeException("GoodCategory doesn't exist!"));
+            goodExisting.setGoodCategoryId(goodCategory.getGoodCategoryId());
+        }
+
+        if (updateGoodRequest.getAvailableItemCount() != null) {
+            goodExisting.setAvailableItemCount(updateGoodRequest.getAvailableItemCount());
+        }
+
+        goodExisting.setCreatedAt(goodExisting.getCreatedAt());
+
+        goodRepository.save(goodExisting);
+    }
+
+    @Override
+    public Page<Good> findAllGoods(Pageable pageable) {
+        return goodRepository.findAll(pageable);
     }
     
     @Override
-    public Page<ProductResponse> getAllProducts(String sort, Integer page, Integer size) {
+    public Page<GoodResponse> getAllGoods(String sort, Integer page, Integer size) {
         
         //set defaults
         if (size == null || size == 0) {
@@ -175,14 +175,14 @@ public class ProductServiceImpl implements ProductService {
                 pageable = PageRequest.of(page, size, Sort.by(order));
                 
             } catch (Exception e) {
-                throw new RuntimeException("Not a valid sort value, It should be 'fieldName,direction', example : 'productName,asc");
+                throw new RuntimeException("Not a valid sort value, It should be 'fieldName,direction', example : 'goodName,asc");
             }
             
         }
-        Page<Product> allProducts = productRepository.findAll(pageable);
-        Page<ProductResponse> allProductsResponse = allProducts.map(Product::fromEntity);
-        allProductsResponse.forEach(productResponse -> populateRatingForProduct(productResponse.getProductId(), productResponse));
+        Page<Good> allGoods = goodRepository.findAll(pageable);
+        Page<GoodResponse> allGoodsResponse = allGoods.map(Good::fromEntity);
+        allGoodsResponse.forEach(goodResponse -> populateRatingForGood(goodResponse.getGoodId(), goodResponse));
 
-        return allProductsResponse;
+        return allGoodsResponse;
     }
 }

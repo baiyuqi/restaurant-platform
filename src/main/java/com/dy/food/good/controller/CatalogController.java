@@ -1,4 +1,4 @@
-package com.dy.food.catalog.controller;
+package com.dy.food.good.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 

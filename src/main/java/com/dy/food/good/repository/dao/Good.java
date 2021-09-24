@@ -1,7 +1,7 @@
-package com.dy.food.catalog.repository.dao;
+package com.dy.food.good.repository.dao;
 
-import com.dy.food.catalog.web.ProductResponse;
 import com.dy.food.commons.util.DateAudit;
+import com.dy.food.good.web.GoodResponse;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
@@ -30,16 +30,16 @@ import javax.persistence.Table;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product extends DateAudit {
+public class Good extends DateAudit {
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "PRODUCT_ID", updatable = false, nullable = false)
-    private String productId;
+    private String goodId;
 
     @Column(name = "PRODUCT_NAME", nullable = false)
-    private String productName;
+    private String goodName;
 
     @Column(name = "PRODUCT_DESCRIPTION")
     private String description;
@@ -49,15 +49,15 @@ public class Product extends DateAudit {
     private String imageId;
 
    
-    private String productCategoryId;
+    private String goodCategoryId;
 
     @Column(name = "AVAILABLE_ITEM_COUNT")
     private int availableItemCount;
 
    
-    public static ProductResponse fromEntity(Product product) {
+    public static GoodResponse fromEntity(Good good) {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        return objectMapper.convertValue(product, ProductResponse.class);
+        return objectMapper.convertValue(good, GoodResponse.class);
     }
 }

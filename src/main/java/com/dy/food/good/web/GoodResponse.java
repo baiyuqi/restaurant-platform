@@ -1,4 +1,4 @@
-package com.dy.food.catalog.web;
+package com.dy.food.good.web;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductResponse {
+public class GoodResponse {
 
-    private String productId;
-    private String productName;
+    private String goodId;
+    private String goodName;
     private String description;
     private double price;
-    private String productCategory;
+    private String goodCategory;
     private int availableItemCount;
     private Double averageRating;
     private int noOfRatings;

@@ -1,4 +1,4 @@
-package com.dy.food.catalog.service.impl;
+package com.dy.food.good.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -7,11 +7,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.dy.food.catalog.repository.ProductCategoryRepository;
-import com.dy.food.catalog.repository.dao.ProductCategory;
-import com.dy.food.catalog.service.ProductCategoryService;
-import com.dy.food.catalog.web.CreateProductCategoryRequest;
-import com.dy.food.catalog.web.UpdateProductCategoryRequest;
+import com.dy.food.good.repository.GoodCategoryRepository;
+import com.dy.food.good.repository.dao.GoodCategory;
+import com.dy.food.good.service.GoodCategoryService;
+import com.dy.food.good.web.CreateGoodCategoryRequest;
+import com.dy.food.good.web.UpdateGoodCategoryRequest;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -21,62 +21,62 @@ import java.util.Optional;
  * Date : 2019-06-06
  */
 @Service
-public class ProductCategoryServiceImpl implements ProductCategoryService {
+public class GoodCategoryServiceImpl implements GoodCategoryService {
 
     @Autowired
-    ProductCategoryRepository productCategoryRepository;
+    GoodCategoryRepository goodCategoryRepository;
 
     @Override
-    public String createProductCategory(
-        @Valid CreateProductCategoryRequest createProductCategoryRequest) {
+    public String createGoodCategory(
+        @Valid CreateGoodCategoryRequest createGoodCategoryRequest) {
 
-        ProductCategory productCategory = ProductCategory.builder()
-                .productCategoryName(createProductCategoryRequest.getProductCategoryName())
-                .description(createProductCategoryRequest.getDescription())
+        GoodCategory goodCategory = GoodCategory.builder()
+                .goodCategoryName(createGoodCategoryRequest.getGoodCategoryName())
+                .description(createGoodCategoryRequest.getDescription())
                 .build();
 
-        ProductCategory savedProductCategory = productCategoryRepository.save(productCategory);
-        return savedProductCategory.getProductCategoryId();
+        GoodCategory savedGoodCategory = goodCategoryRepository.save(goodCategory);
+        return savedGoodCategory.getGoodCategoryId();
     }
 
     @Override
-    public ProductCategory getProductCategory(String productCategoryId) {
+    public GoodCategory getGoodCategory(String goodCategoryId) {
 
-        Optional<ProductCategory> productCategoryOptional = productCategoryRepository.findById(productCategoryId);
+        Optional<GoodCategory> goodCategoryOptional = goodCategoryRepository.findById(goodCategoryId);
 
-        ProductCategory productCategory = productCategoryOptional.orElseThrow(() -> new RuntimeException("Product Category doesn't exist!"));
+        GoodCategory goodCategory = goodCategoryOptional.orElseThrow(() -> new RuntimeException("Good Category doesn't exist!"));
 
-        return productCategory;
+        return goodCategory;
     }
 
     @Override
-    public void deleteProductCategory(String productCategoryId) {
+    public void deleteGoodCategory(String goodCategoryId) {
 
-        productCategoryRepository.deleteById(productCategoryId);
+        goodCategoryRepository.deleteById(goodCategoryId);
 
     }
 
     @Override
-    public void updateProductCategory(UpdateProductCategoryRequest updateProductCategoryRequest) {
+    public void updateGoodCategory(UpdateGoodCategoryRequest updateGoodCategoryRequest) {
 
-        //To check weather the ProductCategory exist.
-        ProductCategory getProductCategory =
-                this.getProductCategory(updateProductCategoryRequest.getProductCategoryId());
+        //To check weather the GoodCategory exist.
+        GoodCategory getGoodCategory =
+                this.getGoodCategory(updateGoodCategoryRequest.getGoodCategoryId());
 
-        ProductCategory productCategory = ProductCategory.builder()
-                .productCategoryId(updateProductCategoryRequest.getProductCategoryId())
-                .productCategoryName(updateProductCategoryRequest.getProductCategoryName())
-                .description(updateProductCategoryRequest.getDescription())
+        GoodCategory goodCategory = GoodCategory.builder()
+                .goodCategoryId(updateGoodCategoryRequest.getGoodCategoryId())
+                .goodCategoryName(updateGoodCategoryRequest.getGoodCategoryName())
+                .description(updateGoodCategoryRequest.getDescription())
                 .build();
 
-        productCategory.setCreatedAt(getProductCategory.getCreatedAt());
+        goodCategory.setCreatedAt(getGoodCategory.getCreatedAt());
 
-        productCategoryRepository.save(productCategory);
+        goodCategoryRepository.save(goodCategory);
 
     }
     
     @Override
-    public Page<ProductCategory> getAllProductCategories(String sort, Integer page, Integer size) {
+    public Page<GoodCategory> getAllGoodCategories(String sort, Integer page, Integer size) {
         
         //set defaults
         if (size == null || size == 0) {
@@ -103,11 +103,11 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
                 pageable = PageRequest.of(page, size, Sort.by(order));
                 
             } catch (Exception e) {
-                throw new RuntimeException("Not a valid sort value, It should be 'fieldName,direction', example : 'productCategoryName,asc");
+                throw new RuntimeException("Not a valid sort value, It should be 'fieldName,direction', example : 'goodCategoryName,asc");
             }
             
         }
         
-        return productCategoryRepository.findAll(pageable);
+        return goodCategoryRepository.findAll(pageable);
     }
 }

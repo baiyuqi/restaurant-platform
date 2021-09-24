@@ -1,4 +1,4 @@
-package com.dy.food.catalog.service.impl;
+package com.dy.food.good.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -6,12 +6,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.dy.food.account.service.UserService;
-import com.dy.food.catalog.repository.ReviewRepository;
-import com.dy.food.catalog.repository.dao.Review;
-import com.dy.food.catalog.service.ProductService;
-import com.dy.food.catalog.service.ReviewService;
-import com.dy.food.catalog.web.CreateOrUpdateReviewRequest;
-import com.dy.food.catalog.web.ProductResponse;
+import com.dy.food.good.repository.ReviewRepository;
+import com.dy.food.good.repository.dao.Review;
+import com.dy.food.good.service.GoodService;
+import com.dy.food.good.service.ReviewService;
+import com.dy.food.good.web.CreateOrUpdateReviewRequest;
+import com.dy.food.good.web.GoodResponse;
 
 import static com.dy.food.commons.util.CommonUtilityMethods.getUserIdFromToken;
 import static com.dy.food.commons.util.CommonUtilityMethods.getUserNameFromToken;
@@ -33,7 +33,7 @@ public class ReviewServiceImpl implements ReviewService {
     UserService accountFeignClient;
 
     @Autowired
-    ProductService productService;
+    GoodService goodService;
 
     @Override
     public void createOrUpdateReview(CreateOrUpdateReviewRequest createOrUpdateReviewRequest) {
@@ -41,13 +41,13 @@ public class ReviewServiceImpl implements ReviewService {
         String userIdFromToken = getUserIdFromToken(authentication);
         String userNameFromToken = getUserNameFromToken(authentication);
 
-        //check whether product exists.
-        ProductResponse product = productService.getProduct(createOrUpdateReviewRequest.getProductId());
-        if (product == null) {
-            throw new RuntimeException("Product doesn't exist!");
+        //check whether good exists.
+        GoodResponse good = goodService.getGood(createOrUpdateReviewRequest.getGoodId());
+        if (good == null) {
+            throw new RuntimeException("Good doesn't exist!");
         }
 
-        Optional<Review> review = reviewRepository.findByUserIdAndProductId(userIdFromToken, createOrUpdateReviewRequest.getProductId());
+        Optional<Review> review = reviewRepository.findByUserIdAndGoodId(userIdFromToken, createOrUpdateReviewRequest.getGoodId());
 
         if (review.isPresent()) {
             Review updatedReview = review.get();
@@ -60,17 +60,17 @@ public class ReviewServiceImpl implements ReviewService {
                     .ratingValue(createOrUpdateReviewRequest.getRatingValue())
                     .userId(userIdFromToken)
                     .userName(userNameFromToken)
-                    .productId(createOrUpdateReviewRequest.getProductId())
+                    .goodId(createOrUpdateReviewRequest.getGoodId())
                     .build();
             reviewRepository.save(newReview);
         }
     }
 
     @Override
-    public List<Review> getReviewsForProduct(String productId) {
+    public List<Review> getReviewsForGood(String goodId) {
 
-        Optional<List<Review>> reviewsForProduct = reviewRepository.findAllByProductId(productId);
-        return reviewsForProduct.orElseGet(ArrayList::new);
+        Optional<List<Review>> reviewsForGood = reviewRepository.findAllByGoodId(goodId);
+        return reviewsForGood.orElseGet(ArrayList::new);
 
     }
 }

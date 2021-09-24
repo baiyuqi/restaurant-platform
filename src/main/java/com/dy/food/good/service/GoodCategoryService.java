@@ -1,24 +1,24 @@
-package com.dy.food.catalog.service;
+package com.dy.food.good.service;
 
 import javax.validation.Valid;
 import org.springframework.data.domain.Page;
 
-import com.dy.food.catalog.repository.dao.ProductCategory;
-import com.dy.food.catalog.web.CreateProductCategoryRequest;
-import com.dy.food.catalog.web.UpdateProductCategoryRequest;
+import com.dy.food.good.repository.dao.GoodCategory;
+import com.dy.food.good.web.CreateGoodCategoryRequest;
+import com.dy.food.good.web.UpdateGoodCategoryRequest;
 
 /**
  * @author: Yuqi.Bai, Date : 2019-09-27
  */
-public interface ProductCategoryService {
+public interface GoodCategoryService {
 
-  String createProductCategory(@Valid CreateProductCategoryRequest createProductCategoryRequest);
+  String createGoodCategory(@Valid CreateGoodCategoryRequest createGoodCategoryRequest);
 
-  ProductCategory getProductCategory(String productCategoryId);
+  GoodCategory getGoodCategory(String goodCategoryId);
 
-  void deleteProductCategory(String productCategoryId);
+  void deleteGoodCategory(String goodCategoryId);
 
-  void updateProductCategory(UpdateProductCategoryRequest updateProductCategoryRequest);
+  void updateGoodCategory(UpdateGoodCategoryRequest updateGoodCategoryRequest);
 
-  Page<ProductCategory> getAllProductCategories(String sort, Integer page, Integer size);
+  Page<GoodCategory> getAllGoodCategories(String sort, Integer page, Integer size);
 }

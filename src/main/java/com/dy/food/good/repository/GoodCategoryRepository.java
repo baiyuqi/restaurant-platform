@@ -1,14 +1,14 @@
-package com.dy.food.catalog.repository;
+package com.dy.food.good.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.dy.food.catalog.repository.dao.ProductCategory;
+import com.dy.food.good.repository.dao.GoodCategory;
 
 /**
  * @author: Yuqi.Bai,
  * Date : 2019-06-06
  */
 @Repository
-public interface ProductCategoryRepository extends JpaRepository<ProductCategory, String> {
+public interface GoodCategoryRepository extends JpaRepository<GoodCategory, String> {
 }

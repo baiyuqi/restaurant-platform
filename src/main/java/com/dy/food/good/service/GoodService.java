@@ -1,28 +1,28 @@
-package com.dy.food.catalog.service;
+package com.dy.food.good.service;
 
 import javax.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.dy.food.catalog.repository.dao.Product;
-import com.dy.food.catalog.web.CreateProductRequest;
-import com.dy.food.catalog.web.ProductResponse;
-import com.dy.food.catalog.web.UpdateProductRequest;
+import com.dy.food.good.repository.dao.Good;
+import com.dy.food.good.web.CreateGoodRequest;
+import com.dy.food.good.web.GoodResponse;
+import com.dy.food.good.web.UpdateGoodRequest;
 
 /**
  * @author: Yuqi.Bai, Date : 2019-09-27
  */
-public interface ProductService {
+public interface GoodService {
 
-  String createProduct(@Valid CreateProductRequest createProductRequest);
+  String createGood(@Valid CreateGoodRequest createGoodRequest);
 
-  ProductResponse getProduct(String productId);
+  GoodResponse getGood(String goodId);
 
-  void deleteProduct(String productId);
+  void deleteGood(String goodId);
 
-  void updateProduct(UpdateProductRequest updateProductRequest);
+  void updateGood(UpdateGoodRequest updateGoodRequest);
 
-  Page<Product> findAllProducts(Pageable pageable);
+  Page<Good> findAllGoods(Pageable pageable);
 
-  Page<ProductResponse> getAllProducts(String sort, Integer page, Integer size);
+  Page<GoodResponse> getAllGoods(String sort, Integer page, Integer size);
 }

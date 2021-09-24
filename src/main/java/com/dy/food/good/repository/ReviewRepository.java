@@ -1,9 +1,9 @@
-package com.dy.food.catalog.repository;
+package com.dy.food.good.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.dy.food.catalog.repository.dao.Review;
+import com.dy.food.good.repository.dao.Review;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,10 +14,10 @@ import java.util.Optional;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, String> {
 
-    Optional<Review> findByUserIdAndProductId(String userId, String productId);
+    Optional<Review> findByUserIdAndGoodId(String userId, String goodId);
 
-    Optional<List<Review>> findAllByProductId(String productId);
+    Optional<List<Review>> findAllByGoodId(String goodId);
 
-    //    long countAllByProductIdAndReviewMessageNotNull (String productId);
-    long countAllByProductId(String productId);
+    //    long countAllByGoodIdAndReviewMessageNotNull (String goodId);
+    long countAllByGoodId(String goodId);
 }

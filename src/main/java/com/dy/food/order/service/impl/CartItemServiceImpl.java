@@ -6,9 +6,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.dy.food.account.service.UserService;
-import com.dy.food.catalog.service.ProductCategoryService;
-import com.dy.food.catalog.service.ProductService;
-import com.dy.food.catalog.web.ProductResponse;
+import com.dy.food.good.service.GoodCategoryService;
+import com.dy.food.good.service.GoodService;
+import com.dy.food.good.web.GoodResponse;
 import com.dy.food.order.repository.CartItemRepository;
 import com.dy.food.order.repository.dao.Cart;
 import com.dy.food.order.repository.dao.CartItem;
@@ -31,7 +31,7 @@ public class CartItemServiceImpl implements CartItemService {
     CartService cartService;
 
     @Autowired
-    ProductService catalogFeignClient;
+    GoodService catalogFeignClient;
 
     @Autowired
     CartItemRepository cartItemRepository;
@@ -54,7 +54,7 @@ public class CartItemServiceImpl implements CartItemService {
             }
         }
     
-        ProductResponse getProductResponse = catalogFeignClient.getProduct(cartItemRequest.getProductId());
+        GoodResponse getProductResponse = catalogFeignClient.getProduct(cartItemRequest.getProductId());
 
         if (cartItemRequest.getQuantity() > getProductResponse.getAvailableItemCount()) {
             throw new RuntimeException("Quantity is greater than available item count!");

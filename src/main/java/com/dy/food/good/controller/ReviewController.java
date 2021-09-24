@@ -1,4 +1,4 @@
-package com.dy.food.catalog.controller;
+package com.dy.food.good.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dy.food.catalog.repository.dao.Review;
-import com.dy.food.catalog.service.ReviewService;
-import com.dy.food.catalog.web.CreateOrUpdateReviewRequest;
+import com.dy.food.good.repository.dao.Review;
+import com.dy.food.good.service.ReviewService;
+import com.dy.food.good.web.CreateOrUpdateReviewRequest;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -32,8 +32,8 @@ public class ReviewController {
     }
 
     @GetMapping("/review")
-    public ResponseEntity<?> getAllReviewsForProduct(@RequestParam("productId") String productId) {
-        List<Review> reviewsForProduct = reviewService.getReviewsForProduct(productId);
-        return ResponseEntity.ok(reviewsForProduct);
+    public ResponseEntity<?> getAllReviewsForGood(@RequestParam("goodId") String goodId) {
+        List<Review> reviewsForGood = reviewService.getReviewsForGood(goodId);
+        return ResponseEntity.ok(reviewsForGood);
     }
 }

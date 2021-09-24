@@ -1,4 +1,4 @@
-package com.dy.food.catalog.repository.dao;
+package com.dy.food.good.repository.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,7 +36,7 @@ public class Review extends DateAudit {
     private String reviewId;
 
     @Column(name = "PRODUCT_ID", updatable = false, nullable = false)
-    private String productId;
+    private String goodId;
 
     @Column(name = "USER_ID", nullable = false)
     private String userId;

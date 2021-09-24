@@ -1,4 +1,4 @@
-package com.dy.food.catalog.controller;
+package com.dy.food.good.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.dy.food.catalog.service.ProductService;
-import com.dy.food.catalog.web.CreateProductRequest;
-import com.dy.food.catalog.web.ProductResponse;
-import com.dy.food.catalog.web.ProductsPagedResponse;
-import com.dy.food.catalog.web.UpdateProductRequest;
+import com.dy.food.good.service.GoodService;
+import com.dy.food.good.web.CreateGoodRequest;
+import com.dy.food.good.web.GoodResponse;
+import com.dy.food.good.web.GoodsPagedResponse;
+import com.dy.food.good.web.UpdateGoodRequest;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -34,88 +34,88 @@ import java.net.URI;
  */
 @RestController
 @CrossOrigin
-public class ProductController {
+public class GoodController {
 
     @Autowired
-    private ProductService productService;
+    private GoodService goodService;
 
-    @PostMapping("/product")
+    @PostMapping("/good")
     @PreAuthorize("hasAuthority('ADMIN_USER')")
-    public ResponseEntity<?> createProduct(@RequestBody @Valid CreateProductRequest createProductRequest){
+    public ResponseEntity<?> creategood(@RequestBody @Valid CreateGoodRequest createGoodRequest){
 
-        String product = productService.createProduct(createProductRequest);
+        String good = goodService.createGood(createGoodRequest);
 
         URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/{productId}")
-                .buildAndExpand(product).toUri();
+                .fromCurrentRequest().path("/{goodId}")
+                .buildAndExpand(good).toUri();
 
         return ResponseEntity.created(location).build();
     }
 
-    @GetMapping("/product/{productId}")
-    public ResponseEntity<ProductResponse> getProduct(@PathVariable("productId") String productId) {
+    @GetMapping("/good/{goodId}")
+    public ResponseEntity<GoodResponse> getGood(@PathVariable("goodId") String goodId) {
 
-        ProductResponse product = productService.getProduct(productId);
+        GoodResponse good = goodService.getGood(goodId);
 
-        return ResponseEntity.ok(product);
+        return ResponseEntity.ok(good);
     }
 
-    @DeleteMapping("/product/{productId}")
+    @DeleteMapping("/good/{goodId}")
     @PreAuthorize("hasAuthority('ADMIN_USER')")
-    public ResponseEntity<?> deleteProductCategory(@PathVariable("productId") String productId) {
+    public ResponseEntity<?> deleteGoodCategory(@PathVariable("goodId") String goodId) {
 
-        productService.deleteProduct(productId);
+        goodService.deleteGood(goodId);
 
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/product")
+    @PutMapping("/good")
     @PreAuthorize("hasAuthority('ADMIN_USER')")
-    public ResponseEntity<?> updateProduct(@RequestBody @Valid UpdateProductRequest updateProductRequest) {
+    public ResponseEntity<?> updateGood(@RequestBody @Valid UpdateGoodRequest updateGoodRequest) {
 
-        productService.updateProduct(updateProductRequest);
+        goodService.updateGood(updateGoodRequest);
 
         return ResponseEntity.noContent().build();
     }
 
 
-    @GetMapping(value = "/products", produces = "application/json")
-    public ResponseEntity<?> getAllProducts(@RequestParam(value = "sort", required = false) String sort,
+    @GetMapping(value = "/goods", produces = "application/json")
+    public ResponseEntity<?> getAllGoods(@RequestParam(value = "sort", required = false) String sort,
                                             @RequestParam(value = "page", required = false) Integer page,
                                             @RequestParam(value = "size", required = false) Integer size,
-                                            PagedResourcesAssembler<ProductResponse> assembler) {
+                                            PagedResourcesAssembler<GoodResponse> assembler) {
 
-        Page<ProductResponse> list = productService.getAllProducts(sort, page, size);
+        Page<GoodResponse> list = goodService.getAllGoods(sort, page, size);
     
         Link link = new Link(ServletUriComponentsBuilder.fromCurrentRequest().build()
                                                         .toUriString());
 
-        PagedModel<EntityModel<ProductResponse>> resource = assembler.toModel(list, link);
+        PagedModel<EntityModel<GoodResponse>> resource = assembler.toModel(list, link);
     
-        ProductsPagedResponse productsPagedResponse = new ProductsPagedResponse();
-        productsPagedResponse.setPage(list);
+        GoodsPagedResponse goodsPagedResponse = new GoodsPagedResponse();
+        goodsPagedResponse.setPage(list);
 
         if (resource.getLink("first").isPresent()) {
-            productsPagedResponse.get_links().put("first", resource.getLink("first").get().getHref());
+            goodsPagedResponse.get_links().put("first", resource.getLink("first").get().getHref());
         }
 
         if (resource.getLink("prev").isPresent()) {
-            productsPagedResponse.get_links().put("prev", resource.getLink("prev").get().getHref());
+            goodsPagedResponse.get_links().put("prev", resource.getLink("prev").get().getHref());
         }
 
         if (resource.getLink("self").isPresent()) {
-            productsPagedResponse.get_links().put("self", resource.getLink("self").get().getHref());
+            goodsPagedResponse.get_links().put("self", resource.getLink("self").get().getHref());
         }
 
         if (resource.getLink("next").isPresent()) {
-            productsPagedResponse.get_links().put("next", resource.getLink("next").get().getHref());
+            goodsPagedResponse.get_links().put("next", resource.getLink("next").get().getHref());
         }
 
         if (resource.getLink("last").isPresent()) {
-            productsPagedResponse.get_links().put("last", resource.getLink("last").get().getHref());
+            goodsPagedResponse.get_links().put("last", resource.getLink("last").get().getHref());
         }
     
-        return ResponseEntity.ok(productsPagedResponse);
+        return ResponseEntity.ok(goodsPagedResponse);
 
     }
 }
