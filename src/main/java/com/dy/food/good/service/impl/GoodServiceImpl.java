@@ -185,4 +185,11 @@ public class GoodServiceImpl implements GoodService {
 
         return allGoodsResponse;
     }
+
+	@Override
+	public List<Good> getAllGoodsByRestaurant(String restaurantId) {
+	    List<Good> allGoods = goodRepository.findByRestaurantId(restaurantId);
+     
+        return allGoods;
+	}
 }

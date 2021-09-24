@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.dy.food.good.repository.dao.Good;
 import com.dy.food.good.service.GoodService;
 import com.dy.food.good.web.CreateGoodRequest;
 import com.dy.food.good.web.GoodResponse;
@@ -27,6 +28,7 @@ import com.dy.food.good.web.UpdateGoodRequest;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 /**
  * @author: Yuqi.Bai,
@@ -116,6 +118,13 @@ public class GoodController {
         }
     
         return ResponseEntity.ok(goodsPagedResponse);
+
+    }
+
+    @GetMapping(value = "/goodsByRestaurant", produces = "application/json")
+    public ResponseEntity<?> getAllGoodsByRestaurant(String restaurantId) {
+    	List<Good> rst = goodService.getAllGoodsByRestaurant(restaurantId);
+        return ResponseEntity.ok(rst);
 
     }
 }

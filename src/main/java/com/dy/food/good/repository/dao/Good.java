@@ -48,11 +48,13 @@ public class Good extends DateAudit {
     @Column(name = "PRODUCT_IMAGE_ID")
     private String imageId;
 
-   
+    @Column(name = "PRODUCT_CATEGORY_ID")
     private String goodCategoryId;
 
     @Column(name = "AVAILABLE_ITEM_COUNT")
     private int availableItemCount;
+    
+    private String restaurantId;
 
    
     public static GoodResponse fromEntity(Good good) {

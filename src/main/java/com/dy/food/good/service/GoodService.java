@@ -1,5 +1,7 @@
 package com.dy.food.good.service;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,4 +27,5 @@ public interface GoodService {
   Page<Good> findAllGoods(Pageable pageable);
 
   Page<GoodResponse> getAllGoods(String sort, Integer page, Integer size);
+  List<Good> getAllGoodsByRestaurant(String restaurantId);
 }
